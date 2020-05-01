@@ -1,5 +1,6 @@
 from GridCal.Engine import *
 import networkx as nx
+import pandas
 from matplotlib import pylab
 from GridCal.Engine.Simulations.ContinuationPowerFlow.voltage_collapse_driver import VoltageCollapseOptions, \
     VoltageCollapseInput, VoltageCollapse
@@ -78,7 +79,10 @@ def save_graph(graph, file_name):
     plt.savefig(file_name, bbox_inches="tight")
     pylab.close()
     del fig
-#-----------------------------------------Nordic 64 modeling------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------End of Visualizing code------------------------------------------------------------------------------------------------------------------
+
+
+#-----------------------------------------Start of modeling Nordi-64------------------------------------------------------------------------------------------------------------------
 bus41 = Bus('1_BUS 41 L', vnom=130)       # creating an object
 grid.add_bus(bus41)                    # appending an object to the list
 grid.add_load(bus41, Load('load@BUS 41', P=540, Q=128.28))
@@ -554,9 +558,13 @@ grid.add_shunt(bus4043, Shunt( name='shunt 4043', B=200.0))
 grid.add_shunt(bus4046, Shunt( name='shunt 4046', B=100.0))
 grid.add_shunt(bus4051, Shunt( name='shunt 4051', B=100.0))
 grid.add_shunt(bus7100, Shunt( name='shunt 7100', B=-400.0))
-#-----------------------------------------Power Flow Code------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------End of modeling Nordic-64---------------------------------------------------------------------
 
-options = PowerFlowOptions(SolverType.NR, initialize_with_existing_solution=True, control_p=False, multi_core=False, dispatch_storage=False, control_q=ReactivePowerControlMode.Direct, control_taps=TapsControlMode.NoControl)
+
+
+#-----------------------------------------Code to run Power Flow ------------------------------------------------------------------------------------------------------------------
+
+options = PowerFlowOptions(SolverType.NR, initialize_with_existing_solution=True, control_p=False, multi_core=False, dispatch_storage=False, control_q=ReactivePowerControlMode.NoControl, control_taps=TapsControlMode.NoControl)
 power_flow = PowerFlowDriver(grid, options)
 power_flow.run()
 vm = np.abs(power_flow.results.voltage)
@@ -601,10 +609,135 @@ print('\t|loading|:', abs(power_flow.results.loading) * 100)
 print('\terr:', power_flow.results.error)
 print('\tConv:', power_flow.results.converged)
 
+#-----------Adding Bar plot for Power flow-------------------------------------------------------------------------------
+
+
+#------------------------------------------reading the nordic--64 PSS/E text file for plotting purpose------------------------------
+fp = open('nordic 64 psse power flow.txt')
+lines = fp.readlines()
+lis = []
+for i, v in enumerate(lines):
+    if "BUS " in v:
+        lis.append(v)
+print(lis)
+mag = []
+ang = []
+data = lis[0].split()
+print(data)
+print(data[9])
+print(data[10])
+
+for a in lis:
+    data = a.split()
+    mag.append(data[9])
+    ang.append(data[10])
+
+mag = [a.replace('PU', '') for a in mag] # removing the PU tag
+print(mag)
+mag = [float(a) for a in mag]
+print(mag)
+ang = [float(a) for a in ang]
+print(ang)
+#--------------------------------------------------------------------------------------------------------------------------
+
+B = tuple(bus_list)
+y = np.arange(len(B))
+y = [3*i for i in y]
+
+magnitude = abs(power_flow.results.voltage)
+magnitude = [round(a, 3) for a in magnitude]
+print(magnitude)
+
+plt.figure(figsize=(20,25))
+plt.barh(y, magnitude, align = 'center', height = 0.5, color="skyblue")
+plt.title('Voltage Magnitude plot for all the buses of Nordic-64', fontsize=22)
+plt.yticks(y, B)
+plt.xlabel('Magnitude of Voltages in Per Unit (P.U)', fontsize=22)
+for i, v in enumerate(magnitude):
+    plt.text(v + 0.01, 3*i, str(v), color='green', fontweight='bold', fontsize = 15)
+plt.xlim(0,1.25)
+plt.tick_params(labelsize=20)
+plt.tight_layout()
+plt.savefig('NORDIC_64_magnitude.png')
+
+angles =  np.degrees(np.angle(power_flow.results.voltage))
+angles = [round(a, 3) for a in angles]
+plt.figure(figsize=(20,25))
+plt.barh(y, angles, align = 'center', height=1.0, color="skyblue")
+plt.title('Voltage Angles plot for all the buses of Nordic-64', fontsize=22)
+plt.yticks(y, B)
+plt.xlabel('Angles of Voltages in Degrees', fontsize=22)
+for i, v in enumerate(angles):
+    plt.text(v - 0.05, 3*i, str(v), color='green', fontweight='bold', fontsize = 15)
+#plt.xlim(0,1.25)
+plt.tick_params(labelsize=20)
+plt.tight_layout()
+plt.savefig('NORDIC_64_angles.png')
+
+# ----------- Modeling the network as a multigraph (add a multigraph module in multicircuit.py file in order for this to work in you're using this code-----------
 g1 = grid.build_multi_graph()
 print(nx.info(g1))
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#--------Comparison of power flow voltage Magnitudes:-------------------------------------------------------------------------------------------------------------
+df = pandas.DataFrame(dict(graph=bus_list, n=magnitude, m=mag))
+ind = np.arange(len(df))
+width = 0.4
+fig, ax = plt.subplots(figsize=(30,30))
+ax.barh(ind, df.n, width, color="skyblue", label='GRIDCAL')
+ax.barh(ind + width, df.m, width, color='green', label='PSS/E')
+ax.set(yticks=ind + width, yticklabels=df.graph, ylim=[2*width - 1, len(df)])
+ax.legend()
+ax.title.set_text('Voltage Magnitudes plot for all the buses of Nordic-64')
+ax.set_xlabel('Magnitude of Voltages in Per Unit (P.U)')
+#fig.tight_layout()
+
+for i, v in enumerate(magnitude):
+    ax.text(v + 0.01, i-0.2, str(v), color='blue', fontweight='bold', fontsize = 10)
+
+for i, v in enumerate(mag):
+    ax.text(v + 0.01, i+width-0.2, str(v), color='green', fontweight='bold', fontsize=10)
+
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(25)
+ax.tick_params(labelsize=20)
+fig.savefig('NORDIC_64_comparison_magnitudes.png')
+fig.savefig("NORDIC_64_comparison_magnitudes.pdf", bbox_inches='tight', dpi = 500)
+
+#-----------------Comparison of power flow angles:--------------------------------------------
+df = pandas.DataFrame(dict(graph=bus_list, n=angles, m=ang))
+ind = np.arange(len(df))
+width = 0.4
+fig, ax = plt.subplots(figsize=(30,30))
+ax.barh(ind, df.n, width, color="skyblue", label='GRIDCAL')
+ax.barh(ind + width, df.m, width, color='green', label='PSS/E')
+ax.set(yticks=ind + width, yticklabels=df.graph, ylim=[2*width - 1, len(df)])
+ax.legend()
+ax.title.set_text('Voltage Angles plot for all the buses of Nordic-64')
+ax.set_xlabel('Angles in Degrees')
+#fig.tight_layout()
+
+for i, v in enumerate(angles):
+    if v > 0:
+        ax.text(v + 0.04, i-0.2, str(v), color='blue', fontweight='bold', fontsize=10)
+    else:
+        ax.text(v - 2.5, i-0.2, str(v), color='blue', fontweight='bold', fontsize=10)
+for i, v in enumerate(ang):
+    if v > 0:
+        ax.text(v + 0.04, i+width-0.2, str(v), color='green', fontweight='bold', fontsize=10)
+    else:
+        ax.text(v - 2.5, i+width-0.2, str(v), color='green', fontweight='bold', fontsize=10)
+
+for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
+    item.set_fontsize(25)
+ax.tick_params(labelsize=20)
+fig.savefig('NORDIC_64_comparison_angles.png')
+fig.savefig("NORDIC_64_comparison_angles.pdf", bbox_inches='tight', dpi = 500)
 
 plt.show()
+
+#-----------------------------------------End of Power FLow code--------------------------------------------------------------------------------------------------------
 
 
 #-----------------------------------------Voltage Collapse Code------------------------------------------------------------------------------------------------------------------

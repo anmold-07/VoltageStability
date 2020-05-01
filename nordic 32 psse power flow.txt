@@ -112,14 +112,14 @@
   TO LOAD-PQ                        2000.0   396.1  2038.8
   TO   4072 4072        400.00  1  -2000.0  -396.1  2038.8  51 1.0000UN              0.00  104.47    4 EQUIV           1
 
- BUS   1011 1011        130.00 CKT     MW     MVAR     MVA   % 1.0615PU   -6.65  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1011
+ BUS   1011 K 1011        130.00 CKT     MW     MVAR     MVA   % 1.0615PU   -6.65  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1011
                                                                138.00KV               MW     MVAR    1 NORTH           1
   TO     11 LOAD 1011   20.000  1    200.0    79.9   215.4  54 1.0400LK              0.00   11.13    1 NORTH           1
   TO   1013 1013        130.00  1   -212.1    55.1   219.1  59                       4.27   29.87    1 NORTH           1
   TO   1013 1013        130.00  2   -212.1    55.1   219.1  59                       4.27   29.87    1 NORTH           1
   TO   4011 4011        400.00  1    224.1  -190.0   293.8  24 1.0000UN              0.00    6.13    1 NORTH           1
 
- BUS   1012 1012        130.00 CKT     MW     MVAR     MVA   % 1.0631PU   -3.10  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1012
+ BUS   1012 K 1012        130.00 CKT     MW     MVAR     MVA   % 1.0631PU   -3.10  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1012
                                                                138.20KV               MW     MVAR    1 NORTH           1
   TO     12 LOAD 1012   20.000  1    300.0   100.1   316.2  53 1.0500LK              0.00   16.26    1 NORTH           1
   TO   1014 1014        130.00  1   -154.7    35.8   158.8  43                       3.14   20.14    1 NORTH           1
@@ -127,7 +127,7 @@
   TO   4012 4012        400.00  1    609.4  -171.3   633.0  51 1.0000UN              0.00   28.36    1 NORTH           1
   TO  50001 G1          15.000  1   -600.0    -0.4   600.0  75 1.0000LK              0.00   59.73    1 NORTH           1
 
- BUS   1013 1013        130.00 CKT     MW     MVAR     MVA   % 1.0547PU    1.26  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1013
+ BUS   1013 K 1013        130.00 CKT     MW     MVAR     MVA   % 1.0547PU    1.26  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1013
                                                                137.11KV               MW     MVAR    1 NORTH           1
   TO     13 LOAD 1013   20.000  1    100.0    40.0   107.7  54 1.0400LK              0.00    5.64    1 NORTH           1
   TO   1011 1011        130.00  1    216.3   -26.7   218.0  59                       4.27   29.87    1 NORTH           1
@@ -136,7 +136,7 @@
   TO   1014 1014        130.00  2   -116.3     5.4   116.5  32                       0.85    6.10    1 NORTH           1
   TO  50002 G2          15.000  1   -300.0     2.5   300.0  50 1.0000LK              0.00   20.23    1 NORTH           1
 
- BUS   1014 1014        130.00 CKT     MW     MVAR     MVA   % 1.0610PU    4.26  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1014
+ BUS   1014 K 1014        130.00 CKT     MW     MVAR     MVA   % 1.0610PU    4.26  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1014
                                                                137.93KV               MW     MVAR    1 NORTH           1
   TO   1012 1012        130.00  1    157.8   -17.7   158.8  43                       3.14   20.14    1 NORTH           1
   TO   1012 1012        130.00  2    157.8   -17.7   158.8  43                       3.14   20.14    1 NORTH           1
@@ -144,13 +144,13 @@
   TO   1013 1013        130.00  2    117.2    -0.5   117.2  32                       0.85    6.10    1 NORTH           1
   TO  50003 G3          15.000  1   -550.0    36.4   551.2  79 1.0000LK              0.00   57.83    1 NORTH           1
 
- BUS   1021 1021        130.00 CKT     MW     MVAR     MVA   % 1.0310PU    2.64  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1021
+ BUS   1021  K 1021        130.00 CKT     MW     MVAR     MVA   % 1.0310PU    2.64  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1021
                                                                134.04KV               MW     MVAR    1 NORTH           1
   TO   1022 1022        130.00  1    200.0    -3.5   200.0  55                      11.29   75.26    1 NORTH           1
   TO   1022 1022        130.00  2    200.0    -3.5   200.0  55                      11.29   75.26    1 NORTH           1
   TO  50004 G4          15.000  1   -400.0     7.0   400.1  67 1.0000LK              0.00   37.64    1 NORTH           1
 
- BUS   1022 1022        130.00 CKT     MW     MVAR     MVA   % 1.0510PU  -19.06  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1022
+ BUS   1022 K 1022        130.00 CKT     MW     MVAR     MVA   % 1.0510PU  -19.06  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1022
                                                                136.63KV               MW     MVAR    1 NORTH           1
   TO SWITCHED SHUNT                    0.0   -55.2    55.2
   TO     22 LOAD 1022   20.000  1    280.0    95.2   295.7  53 1.0400LK              0.00   15.29    1 NORTH           1
@@ -159,7 +159,7 @@
   TO   4022 4022        400.00  1    297.4  -155.2   335.5  40 1.0000UN              0.00   12.23    1 NORTH           1
   TO  50005 G5          15.000  1   -200.0   -35.8   203.2  81 1.0500LK              0.00   24.72    1 NORTH           1
 
- BUS   1041 1041        130.00 CKT     MW     MVAR     MVA   % 1.0123PU  -81.91  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1041
+ BUS   1041 K 1041        130.00 CKT     MW     MVAR     MVA   % 1.0123PU  -81.91  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1041
                                                                131.60KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -256.2   256.2
   TO      1 LOAD 1041   20.000  1    600.0   180.1   626.5  52 1.0000LK              0.00   31.91    2 CENTRAL         1
@@ -168,7 +168,7 @@
   TO   1045 1045        130.00  1   -147.1    31.7   150.5  42                       3.32   26.60    2 CENTRAL         1
   TO   1045 1045        130.00  2   -147.1    31.7   150.5  42                       3.32   26.60    2 CENTRAL         1
 
- BUS   1042 1042        130.00 CKT     MW     MVAR     MVA   % 1.0145PU  -67.42  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1042
+ BUS   1042 K 1042        130.00 CKT     MW     MVAR     MVA   % 1.0145PU  -67.42  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1042
                                                                131.88KV               MW     MVAR    2 CENTRAL         1
   TO      2 LOAD 1042   20.000  1    330.0    89.9   342.0  57 1.0000LK              0.00   18.95    2 CENTRAL         1
   TO   1044 1044        130.00  1      2.4    -0.5     2.5   1                       0.00    0.03    2 CENTRAL         1
@@ -176,7 +176,7 @@
   TO   1045 1045        130.00  1     25.2    -5.1    25.7   7                       0.31    1.86    2 CENTRAL         1
   TO  50006 G6          15.000  1   -360.0   -83.8   369.6  92 1.0500LK              0.00   54.88    2 CENTRAL         1
 
- BUS   1043 1043        130.00 CKT     MW     MVAR     MVA   % 1.0273PU  -76.81  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1043
+ BUS   1043 K  1043        130.00 CKT     MW     MVAR     MVA   % 1.0273PU  -76.81  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1043
                                                                133.56KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -211.1   211.1
   TO      3 LOAD 1043   20.000  1    260.0   100.1   278.6  61 1.0100LK              0.00   16.31    2 CENTRAL         1
@@ -186,7 +186,7 @@
   TO   1044 1044        130.00  2   -195.2    66.5   206.2  57                       4.04   32.32    2 CENTRAL         1
   TO  50007 G7          15.000  1   -180.0   -34.2   183.2  92 1.0500LK              0.00   26.30    2 CENTRAL         1
 
- BUS   1044 1044        130.00 CKT     MW     MVAR     MVA   % 1.0065PU  -67.74  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1044
+ BUS   1044 K 1044        130.00 CKT     MW     MVAR     MVA   % 1.0065PU  -67.74  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1044
                                                                130.84KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -202.6   202.6
   TO      4 LOAD 1044   20.000  1    840.0   300.1   892.0  56 0.9900LK              0.00   48.11    2 CENTRAL         1
@@ -197,7 +197,7 @@
   TO   4044 4044        400.00  A   -616.8    -7.4   616.9  62 1.0000UN              0.00   37.57    2 CENTRAL         1
   TO   4044 4044        400.00  B   -616.8    -7.4   616.9  62 1.0000UN              0.00   37.57    2 CENTRAL         1
 
- BUS   1045 1045        130.00 CKT     MW     MVAR     MVA   % 1.0110PU  -71.69  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1045
+ BUS   1045 K 1045        130.00 CKT     MW     MVAR     MVA   % 1.0110PU  -71.69  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   1045
                                                                131.43KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -204.4   204.4
   TO      5 LOAD 1043   20.000  1    720.0   230.3   755.9  54 1.0000LK              0.00   39.94    2 CENTRAL         1
@@ -207,21 +207,21 @@
   TO   4045 4045        400.00  A   -498.0    -5.7   498.0  50 1.0000UN              0.00   24.27    2 CENTRAL         1
   TO   4045 4045        400.00  B   -498.0    -5.7   498.0  50 1.0000UN              0.00   24.27    2 CENTRAL         1
 
- BUS   2031 2031        220.00 CKT     MW     MVAR     MVA   % 1.0277PU  -36.68  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   2031
+ BUS   2031 K  2031        220.00 CKT     MW     MVAR     MVA   % 1.0277PU  -36.68  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   2031
                                                                226.10KV               MW     MVAR    1 NORTH           1
   TO     31 LOAD 2031   20.000  1    100.0    30.0   104.4  52 1.0100LK              0.00    5.26    1 NORTH           1
   TO   2032 2032        220.00  1   -266.9    17.3   267.4  52                       8.13   60.96    1 NORTH           1
   TO   2032 2032        220.00  2   -266.9    17.3   267.4  52                       8.13   60.96    1 NORTH           1
   TO   4031 4031        400.00  1    433.7   -64.5   438.5  53 1.0000UN              0.00   21.85    1 NORTH           1
 
- BUS   2032 2032        220.00 CKT     MW     MVAR     MVA   % 1.0694PU  -23.95  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   2032
+ BUS   2032 K 2032        220.00 CKT     MW     MVAR     MVA   % 1.0694PU  -23.95  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   2032
                                                                235.27KV               MW     MVAR    1 NORTH           1
   TO     32 LOAD 2032   20.000  1    200.0    50.0   206.2  52 1.0600LK              0.00   10.44    1 NORTH           1
   TO   2031 2031        220.00  1    275.0    42.0   278.2  52                       8.13   60.96    1 NORTH           1
   TO   2031 2031        220.00  2    275.0    42.0   278.2  52                       8.13   60.96    1 NORTH           1
   TO  50008 G8          15.000  1   -750.0  -134.1   761.9  90 1.0500LK              0.00   98.75    1 NORTH           1
 
- BUS   4011 4011        400.00 CKT     MW     MVAR     MVA   % 1.0222PU   -7.55  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4011
+ BUS   4011 K 4011        400.00 CKT     MW     MVAR     MVA   % 1.0222PU   -7.55  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4011
                                                                408.87KV               MW     MVAR    1 NORTH           1
   TO   1011 1011        130.00  1   -224.1   196.2   297.8  24 0.9500LK              0.00    6.13    1 NORTH           1
   TO   4012 4012        400.00  1   -452.4    42.3   454.4  32                       1.99   15.89    1 NORTH           1
@@ -230,7 +230,7 @@
   TO   4071 4071        400.00  1   -111.2  -117.9   162.1  11                       0.69    6.18    4 EQUIV           1
   TO  50009 G9          15.000  1   -668.5  -129.6   681.0  68 1.0500LK              0.00   73.39    1 NORTH           1
 
- BUS   4012 4012        400.00 CKT     MW     MVAR     MVA   % 1.0231PU   -5.54  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4012
+ BUS   4012 K 4012        400.00 CKT     MW     MVAR     MVA   % 1.0231PU   -5.54  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4012
                                                                409.24KV               MW     MVAR    1 NORTH           1
   TO SWITCHED SHUNT                    0.0   104.7   104.7
   TO   1012 1012        130.00  1   -609.4   199.7   641.3  51 0.9500LK              0.00   28.36    1 NORTH           1
@@ -239,14 +239,14 @@
   TO   4071 4071        400.00  1    -25.3  -127.4   129.9   9                       0.15    1.45    4 EQUIV           1
   TO  50010 G10         15.000  1   -600.0  -172.8   624.4  78 1.0500LK              0.00   76.99    1 NORTH           1
 
- BUS   4021 4021        400.00 CKT     MW     MVAR     MVA   % 1.0487PU  -36.10  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4021
+ BUS   4021 K  4021        400.00 CKT     MW     MVAR     MVA   % 1.0487PU  -36.10  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4021
                                                                419.47KV               MW     MVAR    1 NORTH           1
   TO   4011 4011        400.00  1   -819.3   246.5   855.6  58                      43.14  431.37    1 NORTH           1
   TO   4032 4032        400.00  1    403.4   -76.1   410.5  28                       5.92   59.22    1 NORTH           1
   TO   4042 4042        400.00  1    665.9  -141.2   680.7  46                      40.38  242.28    2 CENTRAL         1
   TO  50011 G11         15.000  1   -250.0   -29.3   251.7  84 1.0500LK              0.00   31.76    1 NORTH           1
 
- BUS   4022 4022        400.00 CKT     MW     MVAR     MVA   % 0.9944PU  -20.88  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4022
+ BUS   4022 K 4022        400.00 CKT     MW     MVAR     MVA   % 0.9944PU  -20.88  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4022
                                                                397.77KV               MW     MVAR    1 NORTH           1
   TO   1022 1022        130.00  1   -297.4   167.4   341.3  41 0.9300LK              0.00   12.23    1 NORTH           1
   TO   4011 4011        400.00  1   -580.0    -2.0   580.0  42                      13.74  137.43    1 NORTH           1
@@ -254,7 +254,7 @@
   TO   4031 4031        400.00  1    817.0  -111.0   824.5  59                      27.11  271.09    1 NORTH           1
   TO   4031 4031        400.00  2    817.0  -111.0   824.5  59                      27.11  271.09    1 NORTH           1
 
- BUS   4031 4031        400.00 CKT     MW     MVAR     MVA   % 1.0365PU  -39.48  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4031
+ BUS   4031 K 4031        400.00 CKT     MW     MVAR     MVA   % 1.0365PU  -39.48  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4031
                                                                414.60KV               MW     MVAR    1 NORTH           1
   TO   2031 2031        220.00  1   -433.7    86.3   442.2  53 1.0000LK              0.00   21.85    1 NORTH           1
   TO   4022 4022        400.00  1   -789.9   258.2   831.0  57                      27.11  271.09    1 NORTH           1
@@ -264,14 +264,14 @@
   TO   4041 4041        400.00  2    689.8  -177.7   712.3  49                      26.71  178.05    2 CENTRAL         1
   TO  50012 G12         15.000  1   -310.0   -55.1   314.9  90 1.0500LK              0.00   43.60    1 NORTH           1
 
- BUS   4032 4032        400.00 CKT     MW     MVAR     MVA   % 1.0485PU  -44.56  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4032
+ BUS   4032 K 4032        400.00 CKT     MW     MVAR     MVA   % 1.0485PU  -44.56  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4032
                                                                419.40KV               MW     MVAR    1 NORTH           1
   TO   4021 4021        400.00  1   -397.4     3.2   397.5  27                       5.92   59.22    1 NORTH           1
   TO   4031 4031        400.00  1   -935.4   245.3   967.0  66                       8.58   85.83    1 NORTH           1
   TO   4042 4042        400.00  1    591.3  -174.4   616.5  42                      32.18  128.72    2 CENTRAL         1
   TO   4044 4044        400.00  1    741.6   -74.1   745.2  51                      30.19  251.62    2 CENTRAL         1
 
- BUS   4041 4041        400.00 CKT     MW     MVAR     MVA   % 1.0505PU  -54.32  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4041
+ BUS   4041 K  4041        400.00 CKT     MW     MVAR     MVA   % 1.0505PU  -54.32  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4041
                                                                420.20KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -220.7   220.7
   TO     41 LOAD 4041   20.000  1    540.0   160.2   563.3  52 1.0400LK              0.00   28.79    2 CENTRAL         1
@@ -281,7 +281,7 @@
   TO   4061 4061        400.00  1    155.2   -60.0   166.4  11                       1.32    9.88    3 SOUTH           1
   TO  50013 G13         15.000  1     -0.0   -49.6    49.6  17 1.0500LK              0.00    0.82    2 CENTRAL         1
 
- BUS   4042 4042        400.00 CKT     MW     MVAR     MVA   % 1.0428PU  -57.40  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4042
+ BUS   4042 K 4042        400.00 CKT     MW     MVAR     MVA   % 1.0428PU  -57.40  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4042
                                                                417.10KV               MW     MVAR    2 CENTRAL         1
   TO     42 LOAD 4042   20.000  1    400.0   149.6   427.1  53 1.0300LK              0.00   22.25    2 CENTRAL         1
   TO   4021 4021        400.00  1   -625.6    55.3   628.0  43                      40.38  242.28    1 NORTH           1
@@ -290,7 +290,7 @@
   TO   4044 4044        400.00  1    646.3   -40.7   647.6  44                       7.68   76.85    2 CENTRAL         1
   TO  50014 G14         15.000  1   -630.0  -201.3   661.4  94 1.0500LK              0.00   95.04    2 CENTRAL         1
 
- BUS   4043 4043        400.00 CKT     MW     MVAR     MVA   % 1.0369PU  -63.54  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4043
+ BUS   4043 K 4043        400.00 CKT     MW     MVAR     MVA   % 1.0369PU  -63.54  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4043
                                                                414.75KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -215.0   215.0
   TO     43 LOAD 4043   20.000  1    900.0   303.1   949.7  53 1.0200LK              0.00   48.48    2 CENTRAL         1
@@ -299,7 +299,7 @@
   TO   4046 4046        400.00  1    112.1   -14.0   113.0   8                       0.12    1.17    2 CENTRAL         1
   TO   4047 4047        400.00  1   -385.8   -95.1   397.4  27                       2.84   28.43    2 CENTRAL         1
 
- BUS   4044 4044        400.00 CKT     MW     MVAR     MVA   % 1.0394PU  -64.26  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4044
+ BUS   4044 K 4044        400.00 CKT     MW     MVAR     MVA   % 1.0394PU  -64.26  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4044
                                                                415.74KV               MW     MVAR    2 CENTRAL         1
   TO   1044 1044        130.00  A    616.8    44.9   618.5  62 1.0300LK              0.00   37.57    2 CENTRAL         1
   TO   1044 1044        130.00  B    616.8    44.9   618.5  62 1.0300LK              0.00   37.57    2 CENTRAL         1
@@ -310,7 +310,7 @@
   TO   4045 4045        400.00  1    433.7  -129.8   452.8  31                       3.66   36.59    2 CENTRAL         1
   TO   4045 4045        400.00  2    433.7  -129.8   452.8  31                       3.66   36.59    2 CENTRAL         1
 
- BUS   4045 4045        400.00 CKT     MW     MVAR     MVA   % 1.0532PU  -68.91  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4045
+ BUS   4045 K 4045        400.00 CKT     MW     MVAR     MVA   % 1.0532PU  -68.91  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4045
                                                                421.30KV               MW     MVAR    2 CENTRAL         1
   TO   1045 1045        130.00  A    498.0    30.0   498.9  50 1.0400LK              0.00   24.27    2 CENTRAL         1
   TO   1045 1045        130.00  B    498.0    30.0   498.9  50 1.0400LK              0.00   24.27    2 CENTRAL         1
@@ -320,21 +320,21 @@
   TO   4051 4051        400.00  2    100.4  -108.0   147.5  10                       0.43    4.25    2 CENTRAL         1
   TO   4062 4062        400.00  1   -336.6   -45.9   339.7  23                      11.99   87.19    3 SOUTH           1
 
- BUS   4046 4046        400.00 CKT     MW     MVAR     MVA   % 1.0356PU  -64.14  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4046
+ BUS   4046 K 4046        400.00 CKT     MW     MVAR     MVA   % 1.0356PU  -64.14  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4046
                                                                414.26KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -107.3   107.3
   TO     46 LOAD 4046   20.000  1    700.0   250.1   743.3  53 1.0200LK              0.00   38.28    2 CENTRAL         1
   TO   4043 4043        400.00  1   -112.0   -17.3   113.3   8                       0.12    1.17    2 CENTRAL         1
   TO   4047 4047        400.00  1   -588.0  -125.6   601.3  41                       3.31   49.72    2 CENTRAL         1
 
- BUS   4047 4047        400.00 CKT     MW     MVAR     MVA   % 1.0590PU  -59.58  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4047
+ BUS   4047 K  4047        400.00 CKT     MW     MVAR     MVA   % 1.0590PU  -59.58  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4047
                                                                423.60KV               MW     MVAR    2 CENTRAL         1
   TO     47 LOAD 4047   20.000  1    100.0    50.0   111.8  56 1.0400LK              0.00    6.03    2 CENTRAL         1
   TO   4043 4043        400.00  1    388.7    57.8   393.0  27                       2.84   28.43    2 CENTRAL         1
   TO   4046 4046        400.00  1    591.3   120.7   603.5  41                       3.31   49.72    2 CENTRAL         1
   TO  50015 G15         15.000  1  -1080.0  -228.5  1103.9  92 1.0500LK              0.00  149.75    2 CENTRAL         1
 
- BUS   4051 4051        400.00 CKT     MW     MVAR     MVA   % 1.0659PU  -71.04  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4051
+ BUS   4051 K 4051        400.00 CKT     MW     MVAR     MVA   % 1.0659PU  -71.04  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4051
                                                                426.35KV               MW     MVAR    2 CENTRAL         1
   TO SWITCHED SHUNT                    0.0  -113.6   113.6
   TO     51 LOAD 4051   20.000  1    800.0   302.6   855.3  53 1.0500LK              0.00   44.37    2 CENTRAL         1
@@ -342,13 +342,13 @@
   TO   4045 4045        400.00  2   -100.0   -22.6   102.5   7                       0.43    4.25    2 CENTRAL         1
   TO  50016 G16         15.000  1   -600.0  -143.7   617.0  88 1.0500LK              0.00   79.16    2 CENTRAL         1
 
- BUS   4061 4061        400.00 CKT     MW     MVAR     MVA   % 1.0386PU  -57.96  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4061
+ BUS   4061 K 4061        400.00 CKT     MW     MVAR     MVA   % 1.0386PU  -57.96  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4061
                                                                415.46KV               MW     MVAR    3 SOUTH           1
   TO     61 LOAD 4061   20.000  1    500.0   149.3   521.8  52 1.0300LK              0.00   26.78    3 SOUTH           1
   TO   4041 4041        400.00  1   -153.9   -72.2   170.0  12                       1.32    9.88    2 CENTRAL         1
   TO   4062 4062        400.00  1   -346.1   -77.1   354.6  24                       2.26   22.58    3 SOUTH           1
 
- BUS   4062 4062        400.00 CKT     MW     MVAR     MVA   % 1.0560PU  -54.38  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4062
+ BUS   4062 K 4062        400.00 CKT     MW     MVAR     MVA   % 1.0560PU  -54.38  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4062
                                                                422.40KV               MW     MVAR    3 SOUTH           1
   TO     62 LOAD 4062   20.000  1    300.0   100.0   316.2  53 1.0400LK              0.00   16.16    3 SOUTH           1
   TO   4045 4045        400.00  1    348.6  -133.6   373.3  25                      11.99   87.19    2 CENTRAL         1
@@ -357,14 +357,14 @@
   TO   4063 4063        400.00  2   -233.5   -10.6   233.7  16                       1.51   15.09    3 SOUTH           1
   TO  50017 G17         15.000  1   -530.0    20.7   530.4  88 1.0500LK              0.00   69.54    3 SOUTH           1
 
- BUS   4063 4063        400.00 CKT     MW     MVAR     MVA   % 1.0535PU  -50.71  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4063
+ BUS   4063 K  4063        400.00 CKT     MW     MVAR     MVA   % 1.0535PU  -50.71  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4063
                                                                421.41KV               MW     MVAR    3 SOUTH           1
   TO     63 LOAD 4063   20.000  1    590.0   300.1   661.9  56 1.0300LK              0.00   35.49    3 SOUTH           1
   TO   4062 4062        400.00  1    235.0   -74.4   246.5  17                       1.51   15.09    3 SOUTH           1
   TO   4062 4062        400.00  2    235.0   -74.4   246.5  17                       1.51   15.09    3 SOUTH           1
   TO  50018 G18         15.000  1  -1060.0  -151.2  1070.7  89 1.0500LK              0.00  142.35    3 SOUTH           1
 
- BUS   4071 4071        400.00 CKT     MW     MVAR     MVA   % 1.0483PU   -4.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4071
+ BUS   4071 K 4071        400.00 CKT     MW     MVAR     MVA   % 1.0483PU   -4.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4071
                                                                419.33KV               MW     MVAR    4 EQUIV           1
   TO SWITCHED SHUNT                    0.0   439.6   439.6
   TO     71 LOAD 4071   20.000  1    300.0    99.9   316.2  53 1.0300LK              0.00   16.09    4 EQUIV           1
@@ -374,90 +374,90 @@
   TO   4072 4072        400.00  2    -68.6  -194.7   206.4  14                       0.15    1.53    4 EQUIV           1
   TO  50019 G19         15.000  1   -300.0   -92.0   313.8  63 1.0500LK              0.00   29.63    4 EQUIV           1
 
- BUS   4072 4072        400.00 CKT     MW     MVAR     MVA   % 1.0590PU   -3.98  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4072
+ BUS   4072  K 4072        400.00 CKT     MW     MVAR     MVA   % 1.0590PU   -3.98  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   4072
                                                                423.59KV               MW     MVAR    4 EQUIV           1
   TO     72 LOAD 4072   20.000  1   2000.0   500.6  2061.7  52 1.0500LK              0.00  104.47    4 EQUIV           1
   TO   4071 4071        400.00  1     68.8  -136.9   153.2  10                       0.15    1.53    4 EQUIV           1
   TO   4071 4071        400.00  2     68.8  -136.9   153.2  10                       0.15    1.53    4 EQUIV           1
   TO  50020 G20         15.000  1  -2137.6  -226.7  2149.6  48 1.0500LK              0.00  151.42    4 EQUIV           1
 
- BUS  50001 G1          15.000 CKT     MW     MVAR     MVA   % 1.0684PU    2.59  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50001
+ BUS  50001 G1  K        15.000 CKT     MW     MVAR     MVA   % 1.0684PU    2.59  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50001
   FROM GENERATION                    600.0    60.1R  603.0  75 16.026KV               MW     MVAR    1 NORTH           1
   TO   1012 1012        130.00  1    600.0    60.1   603.0  75 1.0000UN              0.00   59.73    1 NORTH           1
 
- BUS  50002 G2          15.000 CKT     MW     MVAR     MVA   % 1.0565PU    5.12  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50002
+ BUS  50002 G2   K       15.000 CKT     MW     MVAR     MVA   % 1.0565PU    5.12  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50002
   FROM GENERATION                    300.0    17.7R  300.5  50 15.847KV               MW     MVAR    1 NORTH           1
   TO   1013 1013        130.00  1    300.0    17.7   300.5  50 1.0000UN              0.00   20.23    1 NORTH           1
 
- BUS  50003 G3          15.000 CKT     MW     MVAR     MVA   % 1.0595PU   10.27  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50003
+ BUS  50003 G3    K      15.000 CKT     MW     MVAR     MVA   % 1.0595PU   10.27  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50003
   FROM GENERATION                    550.0    21.4R  550.4  79 15.892KV               MW     MVAR    1 NORTH           1
   TO   1014 1014        130.00  1    550.0    21.4   550.4  79 1.0000UN              0.00   57.83    1 NORTH           1
 
- BUS  50004 G4          15.000 CKT     MW     MVAR     MVA   % 1.0339PU    8.02  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50004
+ BUS  50004 G4   K       15.000 CKT     MW     MVAR     MVA   % 1.0339PU    8.02  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50004
   FROM GENERATION                    400.0    30.6R  401.2  67 15.509KV               MW     MVAR    1 NORTH           1
   TO   1021 1021        130.00  1    400.0    30.6   401.2  67 1.0000UN              0.00   37.64    1 NORTH           1
 
- BUS  50005 G5          15.000 CKT     MW     MVAR     MVA   % 1.0294PU  -12.37  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50005
+ BUS  50005 G5     K     15.000 CKT     MW     MVAR     MVA   % 1.0294PU  -12.37  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50005
   FROM GENERATION                    200.0    60.5R  208.9  84 15.441KV               MW     MVAR    1 NORTH           1
   TO   1022 1022        130.00  1    200.0    60.5   208.9  84 1.0000UN              0.00   24.72    1 NORTH           1
 
- BUS  50006 G6          15.000 CKT     MW     MVAR     MVA   % 1.0084PU  -59.45  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50006
+ BUS  50006 G6    K      15.000 CKT     MW     MVAR     MVA   % 1.0084PU  -59.45  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50006
   FROM GENERATION                    360.0   138.6R  385.8  96 15.126KV               MW     MVAR    2 CENTRAL         1
   TO   1042 1042        130.00  1    360.0   138.6   385.8  96 1.0000UN              0.00   54.88    2 CENTRAL         1
 
- BUS  50007 G7          15.000 CKT     MW     MVAR     MVA   % 1.0141PU  -68.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50007
+ BUS  50007 G7    K      15.000 CKT     MW     MVAR     MVA   % 1.0141PU  -68.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50007
   FROM GENERATION                    180.0    60.5R  189.9  95 15.211KV               MW     MVAR    2 CENTRAL         1
   TO   1043 1043        130.00  1    180.0    60.5   189.9  95 1.0000UN              0.00   26.30    2 CENTRAL         1
 
- BUS  50008 G8          15.000 CKT     MW     MVAR     MVA   % 1.0498PU  -16.84  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50008
+ BUS  50008 G8    K      15.000 CKT     MW     MVAR     MVA   % 1.0498PU  -16.84  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50008
   FROM GENERATION                    750.0   232.8R  785.3  92 15.747KV               MW     MVAR    1 NORTH           1
   TO   2032 2032        220.00  1    750.0   232.8   785.3  92 1.0000UN              0.00   98.75    1 NORTH           1
 
- BUS  50009 G9          15.000 CKT     MW     MVAR     MVA   % 0.9988PU   -1.63  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50009
+ BUS  50009 G9    K      15.000 CKT     MW     MVAR     MVA   % 0.9988PU   -1.63  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50009
   FROM GENERATION                    668.5   203.0R  698.6  70 14.982KV               MW     MVAR    1 NORTH           1
   TO   4011 4011        400.00  1    668.5   203.0   698.6  70 1.0000UN              0.00   73.39    1 NORTH           1
 
- BUS  50010 G10         15.000 CKT     MW     MVAR     MVA   % 1.0142PU    1.00  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50010
+ BUS  50010 G10   K      15.000 CKT     MW     MVAR     MVA   % 1.0142PU    1.00  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50010
   FROM GENERATION                    600.0   249.8H  649.9  81 15.213KV               MW     MVAR    1 NORTH           1
   TO   4012 4012        400.00  1    600.0   249.8   649.9  81 1.0000UN              0.00   76.99    1 NORTH           1
 
- BUS  50011 G11         15.000 CKT     MW     MVAR     MVA   % 1.0211PU  -29.06  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50011
+ BUS  50011 G11   K      15.000 CKT     MW     MVAR     MVA   % 1.0211PU  -29.06  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50011
   FROM GENERATION                    250.0    61.1R  257.4  86 15.317KV               MW     MVAR    1 NORTH           1
   TO   4021 4021        400.00  1    250.0    61.1   257.4  86 1.0000UN              0.00   31.76    1 NORTH           1
 
- BUS  50012 G12         15.000 CKT     MW     MVAR     MVA   % 1.0200PU  -31.90  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50012
+ BUS  50012 G12   K      15.000 CKT     MW     MVAR     MVA   % 1.0200PU  -31.90  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50012
   FROM GENERATION                    310.0    98.7R  325.3  93 15.300KV               MW     MVAR    1 NORTH           1
   TO   4031 4031        400.00  1    310.0    98.7   325.3  93 1.0000UN              0.00   43.60    1 NORTH           1
 
- BUS  50013 G13         15.000 CKT     MW     MVAR     MVA   % 1.0170PU  -54.32  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50013
+ BUS  50013 G13     K    15.000 CKT     MW     MVAR     MVA   % 1.0170PU  -54.32  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50013
   FROM GENERATION                      0.0    50.4R   50.4  17 15.255KV               MW     MVAR    2 CENTRAL         1
   TO   4041 4041        400.00  1      0.0    50.4    50.4  17 1.0000UN              0.00    0.82    2 CENTRAL         1
 
- BUS  50014 G14         15.000 CKT     MW     MVAR     MVA   % 1.0454PU  -49.93  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50014
+ BUS  50014 G14     K    15.000 CKT     MW     MVAR     MVA   % 1.0454PU  -49.93  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50014
   FROM GENERATION                    630.0   296.3R  696.2  99 15.681KV               MW     MVAR    2 CENTRAL         1
   TO   4042 4042        400.00  1    630.0   296.3   696.2  99 1.0000UN              0.00   95.04    2 CENTRAL         1
 
- BUS  50015 G15         15.000 CKT     MW     MVAR     MVA   % 1.0455PU  -52.22  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50015
+ BUS  50015 G15  K       15.000 CKT     MW     MVAR     MVA   % 1.0455PU  -52.22  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50015
   FROM GENERATION                   1080.0   378.3R 1144.3  95 15.683KV               MW     MVAR    2 CENTRAL         1
   TO   4047 4047        400.00  1   1080.0   378.3  1144.3  95 1.0000UN              0.00  149.75    2 CENTRAL         1
 
- BUS  50016 G16         15.000 CKT     MW     MVAR     MVA   % 1.0531PU  -64.13  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50016
+ BUS  50016 G16    K     15.000 CKT     MW     MVAR     MVA   % 1.0531PU  -64.13  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50016
   FROM GENERATION                    600.0   222.9R  640.1  91 15.797KV               MW     MVAR    2 CENTRAL         1
   TO   4051 4051        400.00  1    600.0   222.9   640.1  91 1.0000UN              0.00   79.16    2 CENTRAL         1
 
- BUS  50017 G17         15.000 CKT     MW     MVAR     MVA   % 1.0092PU  -46.88  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50017
+ BUS  50017 G17    K     15.000 CKT     MW     MVAR     MVA   % 1.0092PU  -46.88  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50017
   FROM GENERATION                    530.0    48.9R  532.2  89 15.138KV               MW     MVAR    3 SOUTH           1
   TO   4062 4062        400.00  1    530.0    48.9   532.2  89 1.0000UN              0.00   69.54    3 SOUTH           1
 
- BUS  50018 G18         15.000 CKT     MW     MVAR     MVA   % 1.0307PU  -43.35  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50018
+ BUS  50018 G18   K      15.000 CKT     MW     MVAR     MVA   % 1.0307PU  -43.35  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50018
   FROM GENERATION                   1060.0   293.6R 1099.9  92 15.460KV               MW     MVAR    3 SOUTH           1
   TO   4063 4063        400.00  1   1060.0   293.6  1099.9  92 1.0000UN              0.00  142.35    3 SOUTH           1
 
- BUS  50019 G19         15.000 CKT     MW     MVAR     MVA   % 1.0300PU    0.03  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50019
+ BUS  50019 G19     K    15.000 CKT     MW     MVAR     MVA   % 1.0300PU    0.03  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50019
   FROM GENERATION                    300.0   121.6R  323.7  65 15.450KV               MW     MVAR    4 EQUIV           1
   TO   4071 4071        400.00  1    300.0   121.6   323.7  65 1.0000UN              0.00   29.63    4 EQUIV           1
 
- BUS  50020 G20         15.000 CKT     MW     MVAR     MVA   % 1.0185PU    0.00  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50020
+ BUS  50020 G20    K     15.000 CKT     MW     MVAR     MVA   % 1.0185PU    0.00  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X  50020
   FROM GENERATION                   2137.6   378.1R 2170.8  48 15.277KV               MW     MVAR    4 EQUIV           1
   TO   4072 4072        400.00  1   2137.6   378.1  2170.8  48 1.0000UN              0.00  151.42    4 EQUIV           1
 

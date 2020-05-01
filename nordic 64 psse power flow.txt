@@ -289,7 +289,7 @@
   TO   4062 BUS4062     400.00  2   -145.2   -90.9   171.3                           0.73    7.30    6                 1
   TO   8500             400.00  1      0.4   -90.2    90.2                           0.44    1.72    1                 1
 
- BUS   5100             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -50.41  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5100
+ BUS   5100     K        300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -50.41  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5100
   FROM GENERATION                    502.3   234.6R  554.4  92 300.00KV               MW     MVAR   21                 1
   TO LOAD-PQ                        1319.0   204.0  1334.7
   TO   5101 NOR_1       400.00  1   -171.2   -25.2   173.0     1.0000UN              0.07    2.74   21                 1
@@ -305,30 +305,30 @@
   TO   5100             300.00  1    171.3    28.0   173.5     1.0000LK              0.07    2.74   21                 1
   TO   5501             400.00  1    117.1   -60.1   131.6                           0.25    2.63   21                 1
 
- BUS   5102             400.00 CKT     MW     MVAR     MVA   % 0.9998PU  -48.67  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5102
+ BUS   5102    K         400.00 CKT     MW     MVAR     MVA   % 0.9998PU  -48.67  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5102
                                                                399.91KV               MW     MVAR   21                 1
   TO   5100             300.00  1    332.8    -6.1   332.9     1.0000LK              0.27   10.14   21                 1
   TO   5301             400.00  1   -356.1    23.4   356.8                           2.90   41.71   21                 1
   TO   6001             400.00  1     23.2   -17.4    29.0                           0.03    0.57   21                 1
 
- BUS   5103             400.00 CKT     MW     MVAR     MVA   % 0.9986PU  -47.89  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5103
+ BUS   5103     K        400.00 CKT     MW     MVAR     MVA   % 0.9986PU  -47.89  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5103
                                                                399.44KV               MW     MVAR   21                 1
   TO   5100             300.00  1    146.7    -5.1   146.8     1.0000LK              0.16    6.48   21                 1
   TO   5301             400.00  1   -146.7     5.1   146.8                           1.11   15.15   21                 1
 
- BUS   5300             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -36.75  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5300
+ BUS   5300     K        300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -36.75  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5300
   FROM GENERATION                    772.3     8.0R  772.3  84 300.00KV               MW     MVAR   21                 1
   TO LOAD-PQ                          67.0     3.0    67.1
   TO   5100             300.00  1    197.3    -4.4   197.3                           4.67   46.73   21                 1
   TO   5301             400.00  1    508.0     9.4   508.1     1.0000LK              1.24   46.47   21                 1
 
- BUS   5301             400.00 CKT     MW     MVAR     MVA   % 1.0000PU  -41.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5301
+ BUS   5301     K        400.00 CKT     MW     MVAR     MVA   % 1.0000PU  -41.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5301
                                                                400.02KV               MW     MVAR   21                 1
   TO   5102             400.00  1    359.0   -24.6   359.8                           2.90   41.71   21                 1
   TO   5103             400.00  1    147.8   -12.4   148.3                           1.11   15.15   21                 1
   TO   5300             300.00  1   -506.8    37.0   508.1     1.0000UN              1.24   46.47   21                 1
 
- BUS   5400             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -48.67  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5400
+ BUS   5400      K       300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -48.67  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5400
   FROM GENERATION                    539.0   -10.2R  539.1  85 300.00KV               MW     MVAR   21                 1
   TO LOAD-PQ                          31.0     0.0    31.0
   TO   5401             400.00  1    111.3    17.9   112.8     1.0000LK              0.12    4.58   21                 1
@@ -337,19 +337,19 @@
   TO   6000             300.00  1     49.6    -6.2    50.0                           0.07    0.74   21                 1
   TO   6100             300.00  1    130.5    -9.9   130.8                           1.03   10.25   21                 1
 
- BUS   5401             400.00 CKT     MW     MVAR     MVA   % 0.9933PU  -50.98  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5401
+ BUS   5401     K        400.00 CKT     MW     MVAR     MVA   % 0.9933PU  -50.98  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5401
                                                                397.32KV               MW     MVAR   21                 1
   TO   5400             300.00  1   -111.2   -13.3   112.0     1.0000UN              0.12    4.58   21                 1
   TO   5501             400.00  1     -5.7   -23.9    24.6                           0.01    0.14   21                 1
   TO   5602             400.00  1    223.7    73.2   235.4                           2.70   42.23   21                 1
   TO   6001             400.00  1   -106.8   -36.0   112.7                           0.11    1.91   21                 1
 
- BUS   5402             400.00 CKT     MW     MVAR     MVA   % 1.0001PU  -48.91  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5402
+ BUS   5402     K        400.00 CKT     MW     MVAR     MVA   % 1.0001PU  -48.91  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5402
                                                                400.06KV               MW     MVAR   21                 1
   TO   5400             300.00  1    -89.9     5.9    90.1     1.0000UN              0.01    0.37   21                 1
   TO   6001             400.00  1     89.9    -6.0    90.1                           0.12    1.82   21                 1
 
- BUS   5500             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -51.10  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5500
+ BUS   5500     K        300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -51.10  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5500
   FROM GENERATION                    281.2    61.4R  287.8  86 300.00KV               MW     MVAR   21                 1
   TO LOAD-PQ                         409.0    38.0   410.8
   TO   5100             300.00  1    -26.2    -0.3    26.2                           0.04    0.31   21                 1
@@ -357,44 +357,44 @@
   TO   5501             400.00  1   -111.1   -41.7   118.6     1.0000LK              0.02    0.63   21                 1
   TO   5603             300.00  1    135.7    53.5   145.9                           2.57   28.93   21                 1
 
- BUS   5501             400.00 CKT     MW     MVAR     MVA   % 1.0020PU  -50.82  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5501
+ BUS   5501      K       400.00 CKT     MW     MVAR     MVA   % 1.0020PU  -50.82  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5501
                                                                400.81KV               MW     MVAR   21                 1
   TO   5101 NOR_1       400.00  1   -116.8   -46.4   125.7                           0.25    2.63   21                 1
   TO   5401             400.00  1      5.7     4.1     7.0                           0.01    0.14   21                 1
   TO   5500             300.00  1    111.1    42.3   118.9     1.0000UN              0.02    0.63   21                 1
 
- BUS   5600             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -57.82  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5600
+ BUS   5600       K      300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -57.82  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5600
   FROM GENERATION                    806.9   234.6R  840.4  88 300.00KV               MW     MVAR   21                 1
   TO LOAD-PQ                        1040.0    99.0  1044.7
   TO   5601             400.00  1   -211.5    19.2   212.3     1.0000LK              0.03    1.03   21                 1
   TO   5603             300.00  1    113.4   100.6   151.6                           1.43   15.71   21                 1
   TO   6000             300.00  1   -135.0    15.9   135.9                           1.97   19.71   21                 1
 
- BUS   5601             400.00 CKT     MW     MVAR     MVA   % 0.9997PU  -57.55  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5601
+ BUS   5601     K        400.00 CKT     MW     MVAR     MVA   % 0.9997PU  -57.55  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5601
                                                                399.88KV               MW     MVAR   21                 1
   TO   5600             300.00  1    211.5   -18.2   212.3     1.0000UN              0.03    1.03   21                 1
   TO   6001             400.00  1   -211.5    18.0   212.3                           1.87   27.77   21                 1
 
- BUS   5602             400.00 CKT     MW     MVAR     MVA   % 0.9327PU  -60.76  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5602
+ BUS   5602     K        400.00 CKT     MW     MVAR     MVA   % 0.9327PU  -60.76  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5602
                                                                373.10KV               MW     MVAR   21                 1
   TO   5401             400.00  1   -221.0   -58.2   228.5                           2.70   42.23   21                 1
   TO   5603             300.00  1    221.0    58.1   228.5     1.0000UN              0.14    5.49   21                 1
 
- BUS   5603             300.00 CKT     MW     MVAR     MVA   % 0.9267PU  -62.09  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5603
+ BUS   5603    K         300.00 CKT     MW     MVAR     MVA   % 0.9267PU  -62.09  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   5603
                                                                278.02KV               MW     MVAR   21                 1
   TO LOAD-PQ                         466.0   171.0   496.4
   TO   5500             300.00  1   -133.2   -27.0   135.9                           2.57   28.93   21                 1
   TO   5600             300.00  1   -112.0   -91.3   144.5                           1.43   15.71   21                 1
   TO   5602             400.00  1   -220.9   -52.6   227.1     1.0000LK              0.14    5.49   21                 1
 
- BUS   6000             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -49.53  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   6000
+ BUS   6000       K      300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -49.53  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   6000
   FROM GENERATION                    383.1    -8.2R  383.2  82 300.00KV               MW     MVAR   21                 1
   TO   5400             300.00  1    -49.5     3.7    49.7                           0.07    0.74   21                 1
   TO   5600             300.00  1    136.9   -11.2   137.4                           1.97   19.71   21                 1
   TO   6001             400.00  1    207.4     7.9   207.5     1.0000LK              0.05    1.94   21                 1
   TO   6100             300.00  1     88.3    -8.6    88.7                           0.52    5.62   21                 1
 
- BUS   6001             400.00 CKT     MW     MVAR     MVA   % 0.9994PU  -50.07  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   6001
+ BUS   6001       K      400.00 CKT     MW     MVAR     MVA   % 0.9994PU  -50.07  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   6001
                                                                399.78KV               MW     MVAR   21                 1
   TO   5102             400.00  1    -23.2   -15.3    27.8                           0.03    0.57   21                 1
   TO   5401             400.00  1    106.9    32.9   111.9                           0.11    1.91   21                 1
@@ -402,7 +402,7 @@
   TO   5601             400.00  1    213.4   -11.5   213.7                           1.87   27.77   21                 1
   TO   6000             300.00  1   -207.3    -5.9   207.4     1.0000UN              0.05    1.94   21                 1
 
- BUS   6100             300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -53.19  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   6100
+ BUS   6100      K       300.00 CKT     MW     MVAR     MVA   % 1.0000PU  -53.19  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   6100
   FROM GENERATION                    796.8   349.7R  870.1  90 300.00KV               MW     MVAR   21                 1
   TO LOAD-PQ                        1014.0   326.0  1065.1
   TO   5400             300.00  1   -129.4    16.1   130.4                           1.03   10.25   21                 1
@@ -416,14 +416,14 @@
   TO   7200 BUS4072     400.00  1    -70.5   -18.5    72.9                           1.17   11.73    7                 1
   TO   7200 BUS4072     400.00  2    -70.5   -18.5    72.9                           1.17   11.73    7                 1
 
- BUS   7101             400.00 CKT     MW     MVAR     MVA   % 1.0100PU    0.59  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7101
+ BUS   7101      K       400.00 CKT     MW     MVAR     MVA   % 1.0100PU    0.59  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7101
   FROM GENERATION                    222.1    36.1R  225.0  68 404.00KV               MW     MVAR    1                 1
   TO LOAD-PQ                         341.0    50.0   344.6
   TO   4012 BUS4012     400.00  1    -22.9    -4.3    23.3                           0.03    0.33    1                 1
   TO   7100 BUS4071     400.00  1     -4.6    -2.4     5.2                           0.00    0.01    7                 1
   TO   7102             400.00  2    -91.3    -7.2    91.6                           0.92    9.23    1                 1
 
- BUS   7102             400.00 CKT     MW     MVAR     MVA   % 1.0191PU    6.35  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7102
+ BUS   7102     K        400.00 CKT     MW     MVAR     MVA   % 1.0191PU    6.35  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7102
                                                                407.64KV               MW     MVAR    1                 1
   TO   7101             400.00  2     92.2    -9.4    92.7                           0.92    9.23    1                 1
   TO   7201             400.00  1    -92.2     9.4    92.7                           0.98    9.76    1                 1
@@ -435,32 +435,32 @@
   TO   7201             400.00  1    -74.9    24.7    78.8                           0.31    3.14    1                 1
   TO   7205             400.00  1    -68.4    23.8    72.4                           0.27    2.67    1                 1
 
- BUS   7201             400.00 CKT     MW     MVAR     MVA   % 1.0100PU   12.28  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7201
+ BUS   7201      K       400.00 CKT     MW     MVAR     MVA   % 1.0100PU   12.28  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7201
   FROM GENERATION                    359.7    19.7R  360.2  83 404.00KV               MW     MVAR    1                 1
   TO LOAD-PQ                         300.0    70.0   308.1
   TO   7102             400.00  1     93.2   -25.4    96.6                           0.98    9.76    1                 1
   TO   7200 BUS4072     400.00  1     75.2   -33.0    82.1                           0.31    3.14    7                 1
   TO   7203             400.00  1   -108.7     8.2   109.1                           0.59    5.89    1                 1
 
- BUS   7203             400.00 CKT     MW     MVAR     MVA   % 1.0100PU   15.37  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7203
+ BUS   7203     K        400.00 CKT     MW     MVAR     MVA   % 1.0100PU   15.37  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7203
   FROM GENERATION                    764.2    41.2R  765.3  88 404.00KV               MW     MVAR    1                 1
   TO LOAD-PQ                         500.0    70.0   504.9
   TO   7201             400.00  1    109.3   -13.6   110.2                           0.59    5.89    1                 1
   TO   7204             400.00  1    154.8   -15.2   155.6                           1.18   11.79    1                 1
 
- BUS   7204             400.00 CKT     MW     MVAR     MVA   % 1.0100PU   10.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7204
+ BUS   7204     K        400.00 CKT     MW     MVAR     MVA   % 1.0100PU   10.99  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7204
   FROM GENERATION                    407.5   154.2R  435.8  92 404.00KV               MW     MVAR    1                 1
   TO LOAD-PQ                         600.0   140.0   616.1
   TO   7203             400.00  1   -153.6    15.6   154.4                           1.18   11.79    1                 1
   TO   7205             400.00  1    -38.8    -1.4    38.8                           0.07    0.75    1                 1
 
- BUS   7205             400.00 CKT     MW     MVAR     MVA   % 1.0100PU   12.09  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7205
+ BUS   7205     K        400.00 CKT     MW     MVAR     MVA   % 1.0100PU   12.09  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   7205
   FROM GENERATION                    407.5    28.2R  408.5  86 404.00KV               MW     MVAR    1                 1
   TO LOAD-PQ                         300.0    70.0   308.1
   TO   7200 BUS4072     400.00  1     68.7   -32.6    76.0                           0.27    2.67    7                 1
   TO   7204             400.00  1     38.9    -9.2    40.0                           0.07    0.75    1                 1
 
- BUS   8500             400.00 CKT     MW     MVAR     MVA   % 1.0200PU  -48.75  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   8500
+ BUS   8500     K        400.00 CKT     MW     MVAR     MVA   % 1.0200PU  -48.75  X--- LOSSES ---X X---- AREA -----X X---- ZONE -----X   8500
   FROM GENERATION                    333.0   324.9R  465.2  70 408.00KV               MW     MVAR    1                 1
   TO LOAD-PQ                         333.0   333.0   470.9
   TO   4063 BUS4063     400.00  1      0.0    -8.1     8.1                           0.44    1.72    6                 1
