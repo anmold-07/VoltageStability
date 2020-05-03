@@ -1,0 +1,48 @@
+      SUBROUTINE STABEX(I,ISLOT)
+      INCLUDE 'COMON4.INS'
+      INTEGER I,ISLOT
+      INTEGER IB,J, L, K
+      REAL Y1, Y2, Y3, Y4
+      INTRINSIC MAX, MIN
+      IB = NUMTRM(I)
+      IF (IB.LE.0) RETURN
+      IF(.NOT.(MODE.EQ.8)) GO TO 32759
+      CON_DSCRPT(1) ='K2'
+      CON_DSCRPT(2) ='T2 (sec)'
+      CON_DSCRPT(3) ='K3'
+      CON_DSCRPT(4) ='T3 (sec)'
+      CON_DSCRPT(5) ='K4'
+      CON_DSCRPT(6) ='K5'
+      CON_DSCRPT(7) ='T5 (sec)'
+      CON_DSCRPT(8) ='H_Lim'
+      RETURN
+32759 J = STRTIN(1,ISLOT)
+      L = STRTIN(3,ISLOT)
+      K = STRTIN(2,ISLOT)
+      IF (MODE .GT. 4) RETURN
+      GO TO (100,200,300,400), MODE
+ 100  STATE(K)=((-PELEC(I)*SBASE)/MBASE(I))*CON(J)**3
+      STATE(K+1)=0.
+      STATE(K+2)=0.
+      STATE(K+3)=0.
+      STATE(K+4)=0.
+      STATE(K+5)=0.
+      RETURN
+ 200  DSTATE(K)=(((-PELEC(I)*SBASE)/MBASE(I))*CON(J)**3-STATE(K))/CON(J+1)
+      DSTATE(K+1)=(((-PELEC(I)*SBASE)/MBASE(I))*CON(J)**3-STATE(K)-STATE(K+1))/CON(J+1)
+      DSTATE(K+2)=(((-PELEC(I)*SBASE)/MBASE(I))*CON(J)**3-STATE(K)-STATE(K+1)-STATE(K+2))/CON(J+1)
+      DSTATE(K+3)=((((-PELEC(I)*SBASE)/MBASE(I))*CON(J)**3-STATE(K)-STATE(K+1)-STATE(K+2))*CON(J+2)-STATE(K+3))/CON(J+3)
+      DSTATE(K+4)=((((((-PELEC(I)*SBASE)/MBASE(I))*CON(J)**3-STATE(K)-STATE(K+1)-STATE(K+2)))*CON(J+4)+STATE(K+3))*CON(J+5)**2-
+     &STATE(K+4))/CON(J+6)
+      DSTATE(K+5)=(STATE(K+4)-STATE(K+5))/CON(J+6)
+      Y1=MAX(STATE(K+5),-CON(J+7))
+      Y2=MIN(Y1,CON(J+7))
+      VOTHSG(I)=Y2
+      RETURN
+ 300  Y3=MAX(STATE(K+5),-CON(J+7))
+      Y4=MIN(Y3,CON(J+7))
+      VOTHSG(I)=Y4
+      RETURN
+ 400  NINTEG=MAX(NINTEG,K+5)
+      RETURN
+      END
