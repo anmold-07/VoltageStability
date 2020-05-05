@@ -7,7 +7,7 @@ from GridCal.Engine.Simulations.ContinuationPowerFlow.voltage_collapse_driver im
 
 np.set_printoptions(precision=4)
 grid = MultiCircuit()
-#-----------------------------------------Graph Visualization for Nordic 64------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------Graph Visualization for Nordic 68------------------------------------------------------------------------------------------------------------------
 def save_graph(graph, file_name):
     plt.figure(num=None, figsize=(100, 100), dpi=300)
     plt.axis('off')
@@ -82,7 +82,10 @@ def save_graph(graph, file_name):
 # -----------------------------------------End of Visualizing code------------------------------------------------------------------------------------------------------------------
 
 
-#-----------------------------------------Start of modeling Nordi-64------------------------------------------------------------------------------------------------------------------
+
+
+
+#-----------------------------------------Start of modeling Nordi-68------------------------------------------------------------------------------------------------------------------
 bus41 = Bus('1_BUS 41 L', vnom=130)       # creating an object
 grid.add_bus(bus41)                    # appending an object to the list
 grid.add_load(bus41, Load('load@BUS 41', P=540, Q=128.28))
@@ -558,12 +561,12 @@ grid.add_shunt(bus4043, Shunt( name='shunt 4043', B=200.0))
 grid.add_shunt(bus4046, Shunt( name='shunt 4046', B=100.0))
 grid.add_shunt(bus4051, Shunt( name='shunt 4051', B=100.0))
 grid.add_shunt(bus7100, Shunt( name='shunt 7100', B=-400.0))
-#-----------------------------------------End of modeling Nordic-64---------------------------------------------------------------------
+#-----------------------------------------End of modeling Nordic-68---------------------------------------------------------------------
 
 
 
 #-----------------------------------------Code to run Power Flow ------------------------------------------------------------------------------------------------------------------
-
+'''
 options = PowerFlowOptions(SolverType.NR, initialize_with_existing_solution=True, control_p=False, multi_core=False, dispatch_storage=False, control_q=ReactivePowerControlMode.NoControl, control_taps=TapsControlMode.NoControl)
 power_flow = PowerFlowDriver(grid, options)
 power_flow.run()
@@ -608,12 +611,11 @@ print('\t|Sbranch|:', abs(power_flow.results.Sbranch))
 print('\t|loading|:', abs(power_flow.results.loading) * 100)
 print('\terr:', power_flow.results.error)
 print('\tConv:', power_flow.results.converged)
-
-#-----------Adding Bar plot for Power flow-------------------------------------------------------------------------------
-
-
-#------------------------------------------reading the nordic--64 PSS/E text file for plotting purpose------------------------------
-fp = open('nordic 64 psse power flow.txt')
+'''
+#----------------------------------------------Adding Bar plot for Power flow-------------------------------------------------------------------------------
+#------------------------------------------reading the nordic--68 PSS/E text file for plotting purpose----------------------------------------------------------
+'''
+fp = open('nordic 68 psse power flow.txt')
 lines = fp.readlines()
 lis = []
 for i, v in enumerate(lines):
@@ -638,7 +640,6 @@ mag = [float(a) for a in mag]
 print(mag)
 ang = [float(a) for a in ang]
 print(ang)
-#--------------------------------------------------------------------------------------------------------------------------
 
 B = tuple(bus_list)
 y = np.arange(len(B))
@@ -650,7 +651,7 @@ print(magnitude)
 
 plt.figure(figsize=(20,25))
 plt.barh(y, magnitude, align = 'center', height = 0.5, color="skyblue")
-plt.title('Voltage Magnitude plot for all the buses of Nordic-64', fontsize=22)
+plt.title('Voltage Magnitude plot for all the buses of Nordic-68', fontsize=22)
 plt.yticks(y, B)
 plt.xlabel('Magnitude of Voltages in Per Unit (P.U)', fontsize=22)
 for i, v in enumerate(magnitude):
@@ -658,13 +659,13 @@ for i, v in enumerate(magnitude):
 plt.xlim(0,1.25)
 plt.tick_params(labelsize=20)
 plt.tight_layout()
-plt.savefig('NORDIC_64_magnitude.png')
+plt.savefig('NORDIC_68_magnitude.png')
 
 angles =  np.degrees(np.angle(power_flow.results.voltage))
 angles = [round(a, 3) for a in angles]
 plt.figure(figsize=(20,25))
 plt.barh(y, angles, align = 'center', height=1.0, color="skyblue")
-plt.title('Voltage Angles plot for all the buses of Nordic-64', fontsize=22)
+plt.title('Voltage Angles plot for all the buses of Nordic-68', fontsize=22)
 plt.yticks(y, B)
 plt.xlabel('Angles of Voltages in Degrees', fontsize=22)
 for i, v in enumerate(angles):
@@ -672,12 +673,16 @@ for i, v in enumerate(angles):
 #plt.xlim(0,1.25)
 plt.tick_params(labelsize=20)
 plt.tight_layout()
-plt.savefig('NORDIC_64_angles.png')
+plt.savefig('NORDIC_68_angles.png')
+
+
 
 # ----------- Modeling the network as a multigraph (add a multigraph module in multicircuit.py file in order for this to work in you're using this code-----------
 g1 = grid.build_multi_graph()
 print(nx.info(g1))
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 #--------Comparison of power flow voltage Magnitudes:-------------------------------------------------------------------------------------------------------------
@@ -689,7 +694,7 @@ ax.barh(ind, df.n, width, color="skyblue", label='GRIDCAL')
 ax.barh(ind + width, df.m, width, color='green', label='PSS/E')
 ax.set(yticks=ind + width, yticklabels=df.graph, ylim=[2*width - 1, len(df)])
 ax.legend()
-ax.title.set_text('Voltage Magnitudes plot for all the buses of Nordic-64')
+ax.title.set_text('Voltage Magnitudes plot for all the buses of Nordic-68')
 ax.set_xlabel('Magnitude of Voltages in Per Unit (P.U)')
 #fig.tight_layout()
 
@@ -702,8 +707,8 @@ for i, v in enumerate(mag):
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(25)
 ax.tick_params(labelsize=20)
-fig.savefig('NORDIC_64_comparison_magnitudes.png')
-fig.savefig("NORDIC_64_comparison_magnitudes.pdf", bbox_inches='tight', dpi = 500)
+fig.savefig('NORDIC_68_comparison_magnitudes.png')
+fig.savefig("NORDIC_68_comparison_magnitudes.pdf", bbox_inches='tight', dpi = 500)
 
 #-----------------Comparison of power flow angles:--------------------------------------------
 df = pandas.DataFrame(dict(graph=bus_list, n=angles, m=ang))
@@ -714,7 +719,7 @@ ax.barh(ind, df.n, width, color="skyblue", label='GRIDCAL')
 ax.barh(ind + width, df.m, width, color='green', label='PSS/E')
 ax.set(yticks=ind + width, yticklabels=df.graph, ylim=[2*width - 1, len(df)])
 ax.legend()
-ax.title.set_text('Voltage Angles plot for all the buses of Nordic-64')
+ax.title.set_text('Voltage Angles plot for all the buses of Nordic-68')
 ax.set_xlabel('Angles in Degrees')
 #fig.tight_layout()
 
@@ -732,16 +737,20 @@ for i, v in enumerate(ang):
 for item in ([ax.title, ax.xaxis.label, ax.yaxis.label] + ax.get_xticklabels() + ax.get_yticklabels()):
     item.set_fontsize(25)
 ax.tick_params(labelsize=20)
-fig.savefig('NORDIC_64_comparison_angles.png')
-fig.savefig("NORDIC_64_comparison_angles.pdf", bbox_inches='tight', dpi = 500)
+fig.savefig('NORDIC_68_comparison_angles.png')
+fig.savefig("NORDIC_68_comparison_angles.pdf", bbox_inches='tight', dpi = 500)
 
 plt.show()
-
-#-----------------------------------------End of Power FLow code--------------------------------------------------------------------------------------------------------
-
-
-#-----------------------------------------Voltage Collapse Code------------------------------------------------------------------------------------------------------------------
 '''
+#-----------------------------------------End of Power flow code and Power Flow Comparison between GridCal and PSS/E--------------------------------------------------------------------------------------------------------
+
+numeric_circuit = grid.compile_snapshot()
+numeric_inputs = numeric_circuit.compute()
+ybus_1 = numeric_inputs[0].Ybus             # computing the Y bus of the matrix;
+R = ybus_1.A.real                           # Scipy sparse matrix to normal matrix;
+I = ybus_1.A.imag
+
+#-----------------------------------------Start of Voltage Collapse Code pre-contingency------------------------------------------------------------------------------------------------------------------
 vc_options = VoltageCollapseOptions(step=0.001, adapt_step=True, step_min=0.00001, step_max=0.2, error_tol=1e-4, tol=1e-6, max_it=50, verbose=False)
 numeric_circuit = grid.compile()
 numeric_inputs = numeric_circuit.compute()
@@ -751,9 +760,42 @@ for c in numeric_inputs:
     Sbase[c.original_bus_idx] = c.Sbus
     Vbase[c.original_bus_idx] = c.Vbus
 unitary_vector = -1 + 2 * np.random.random(len(grid.buses))
-vc_inputs = VoltageCollapseInput(Sbase=Sbase, Vbase=Vbase, Starget=Sbase * (10 + unitary_vector))
+vc_inputs = VoltageCollapseInput(Sbase=Sbase, Vbase=Vbase, Starget=Sbase * (3 + unitary_vector))
 vc = VoltageCollapse(circuit=grid, options=vc_options, inputs=vc_inputs)
 vc.run()
+
+smoothness_r = []
+smoothness_i = []
+data = vc.results.voltages
+print(data)                 # extracting the graph signals in cartesian coordinates in order to calculate smoothness test statistic
+
+for a in range(data.shape[0]):
+    vv = data[a,:]
+    vv_r = vv.real
+    vv_i = vv.imag
+    smoothness_r.append(vv_r.T.dot(R).dot(vv_r))
+    smoothness_i.append(vv_i.T.dot(-I).dot(vv_i))
+
+print(smoothness_r)
+print(smoothness_i)
+
+data = abs(data)
+print(data)
+
+q = [a for a in range(data.shape[0]) if a%25==0]
+fig, ax = plt.subplots()
+ax.stem(q, np.absolute(smoothness_r[0:data.shape[0]:25]), use_line_collection=True)
+ax.set_title('Nordic 68 system', fontsize=20)
+ax.set_ylabel('Test Statistic (Real Part)', fontsize=20)
+ax.set_xlabel('Number of Iterations of Continuation Power Flow', fontsize=20)
+
+fig, ax = plt.subplots()
+ax.stem(q, np.absolute(smoothness_i[0:data.shape[0]:25]), use_line_collection=True)
+ax.set_title('Nordic 68 system', fontsize=20)
+ax.set_ylabel('Test Statistic (Imaginary Part)', fontsize=20)
+ax.set_xlabel('Number of Iterations of Continuation Power Flow', fontsize=20)
+
+
 for key, value in grid.bus_dictionary.items():
     grid.bus_dictionary[key] = key.name
 lis = [grid.bus_dictionary[key] for key, value in grid.bus_dictionary.items()]     # full list
@@ -770,26 +812,29 @@ A = [[sublist[x] for x in indices] for sublist in data]
 sub_columns = spec                                            #[columns[x] for x in indices]
 df1 = pd.DataFrame(data=A, index=index, columns=sub_columns)
 ax = df1.plot()
-ax.set_title('Bus Voltage - Nordic 64', fontsize=20)
+ax.set_title('Bus Voltage - Nordic 68', fontsize=20)
 ax.set_ylabel('Bus Voltage in Per Unit (P.U)', fontsize=20)
-ax.set_xlabel('Loading from the base situation ($\lambda$)', fontsize=20)
-# able to plot the PV curves for all the load buses specifically
+ax.set_xlabel('Loading from the base situation ($\lambda$)', fontsize=20)   # able to plot the PV curves for all the load buses specifically
+plt.show()
+#-----------------------------------------End of Voltage Collapse Code------------------------------------------------------------------------------------------------------------------
 '''
 
 '''
+#----------------------------------------NetworkX grid plot visualization--------------------------------------------------------------------------------------
 g1 = grid.build_multi_graph()
 print(nx.info(g1))
-save_graph(g1,"NORDIC_64_before_outage.pdf")
+save_graph(g1,"NORDIC_68_before_outage.pdf")
 
 
 #grid.delete_branch(br)
-grid.delete_branch(br2)
+#grid.delete_branch(br2)
 
 g2 = grid.build_multi_graph()
 print(nx.info(g2))
-save_graph(g2,"NORDIC_64_after_outage.pdf")
+save_graph(g2,"NORDIC_68_after_outage.pdf")
 '''
-#-----------------------------------------Voltage Collapse Code AGAIN!------------------------------------------------------------------------------------------------------------------
+'''
+#-----------------------------------------Start of Voltage Collapse Code after contingency------------------------------------------------------------------------------------------------------------------
 '''
 vc_options = VoltageCollapseOptions(step=0.001, adapt_step=True, step_min=0.00001, step_max=0.2, error_tol=1e-4, tol=1e-6, max_it=50, verbose=False)
 numeric_circuit = grid.compile()
@@ -817,7 +862,6 @@ B = [[sublist[x] for x in indices] for sublist in data]
 sub_columns = spec   #[columns[x] for x in indices]
 df2 = pd.DataFrame(data=B, index=index, columns=sub_columns)
 df2.plot(ax=ax, ls="--")
-
 '''
 
 

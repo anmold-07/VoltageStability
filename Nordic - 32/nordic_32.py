@@ -69,8 +69,10 @@ def save_graph(graph, file_name):
      del fig
 #-----------------------------------------End of Visualizing code------------------------------------------------------------------------------------------------------------------
 
-#-----------------------------------------Start of modeling Nordi-32------------------------------------------------------------------------------------------------------------------
 
+
+
+#-----------------------------------------Start of modeling Nordi-32------------------------------------------------------------------------------------------------------------------
 bus1 = Bus('1_LOAD 1041', vnom=20)    # creating an object
 grid.add_bus(bus1)                    # appending an object to the list
 grid.add_load(bus1, Load('load@BUS1041', P=600, Q=148.2))
@@ -868,11 +870,14 @@ grid.add_shunt(bus4043, Shunt( name='shunt 4043', B=200.0))
 grid.add_shunt(bus4046, Shunt( name='shunt 4046', B=100.0))
 grid.add_shunt(bus4051, Shunt( name='shunt 4051', B=100.0))
 grid.add_shunt(bus4071, Shunt( name='shunt 4071', B=-400.0))
-#-----------------------------------------End of modeling Nordi-32-----------------------------------------
+#-----------------------------------------End of modeling Nordic-32---------------------------------------------------------------------------------------------------
+
+
+
 
 
 #-----------------------------------------Code to run Power Flow ------------------------------------------------------------------------------------------------------------------
-
+'''
 options = PowerFlowOptions(SolverType.NR, initialize_with_existing_solution=True, control_p=False, multi_core=False, dispatch_storage=False, control_q=ReactivePowerControlMode.NoControl, control_taps=TapsControlMode.NoControl)
 power_flow = PowerFlowDriver(grid, options)
 power_flow.run()
@@ -910,9 +915,60 @@ print('\t|Sbranch|:', abs(power_flow.results.Sbranch))
 print('\t|loading|:', abs(power_flow.results.loading) * 100)
 print('\terr:', power_flow.results.error)
 print('\tConv:', power_flow.results.converged)
-#-----------Adding Bar plot for Power flow-------------------------------------------------------------------------------
 
-#------------------------------------------reading the nordic--32 PSS/E text file for plotting purpose------------------------------
+
+#----------------------------------------------------------Start of Calculation of the Graph Fourier Transform-----------------------------------------------
+print(power_flow.results.voltage)
+v_r = power_flow.results.voltage.real   # splitting the real and imaginary
+v_i = power_flow.results.voltage.imag
+print(v_r)
+print(v_i)
+
+numeric_circuit = grid.compile_snapshot()
+numeric_inputs = numeric_circuit.compute()
+ybus_1 = numeric_inputs[0].Ybus      # computing the Y bus of the matrix;
+R = ybus_1.A.real                    # Scipy sparse matrix to normal matrix;
+I = ybus_1.A.imag
+print(R)
+print(-I)
+eigenValues_r, eigenVectors_r = linalg.eig(R)
+eigenValues_i, eigenVectors_i = linalg.eig(-I)
+idx_r = eigenValues_r.argsort()
+idx_i = eigenValues_i.argsort()
+eigenValues_r = eigenValues_r[idx_r]        # sorting (in increasing order) the corresponding eigenvalues and the corresponding vectors
+eigenVectors_r = eigenVectors_r[:,idx_r]
+
+eigenValues_i = eigenValues_i[idx_i]        # sorting (in increasing order) the corresponding eigenvalues and the corresponding vectors
+eigenVectors_i = eigenVectors_i[:,idx_i]
+
+print(eigenValues_r)
+print(eigenVectors_r)
+
+print(eigenValues_i)
+print(eigenVectors_i)
+
+v_r_hat = (eigenVectors_r.T).dot(v_r)   # finding the graph fourier transform of the real part
+v_i_hat = (eigenVectors_i.T).dot(v_i)   # finding the graph fourier transform of the imaginary part
+
+print(v_r_hat)
+print(v_i_hat)
+
+fig, ax = plt.subplots()
+ax.stem(eigenValues_r, v_r_hat, use_line_collection=True)
+
+fig, ax = plt.subplots()                                    # important plot for transmission systems:
+ax.stem(eigenValues_i, v_i_hat, use_line_collection=True)
+
+smoothness_r = v_r.T.dot(R).dot(v_r)
+print(smoothness_r)
+smoothness_i = v_i.T.dot(-I).dot(v_i)       # calculating smoothness
+print(smoothness_i)
+#----------------------------------------------------------End of calculation of the Graph Fourier Transform-----------------------------------------------
+plt.show()
+'''
+#----------------------------------------------Adding Bar plot for Power flow-------------------------------------------------------------------------------
+#----------------------------------------------Reading the nordic--32 PSS/E text file for plotting purpose----------------------------------------------------
+'''
 fp = open('nordic 32 psse power flow.txt')
 lines = fp.readlines()
 lis = []
@@ -938,7 +994,6 @@ mag = [float(a) for a in mag]
 print(mag)
 ang = [float(a) for a in ang]
 print(ang)
-#--------------------------------------------------------------------------------------------------------------------------
 
 B = tuple(bus_list)
 y = np.arange(len(B))
@@ -1035,13 +1090,19 @@ ax.tick_params(labelsize=25)
 fig.savefig('NORDIC_32_comparison_angles.png')
 fig.savefig("NORDIC_32_comparison_angles.pdf", bbox_inches='tight', dpi = 500)
 
-
 plt.show()
-
-#-----------------------------------------End of Power FLow code--------------------------------------------------------------------------------------------------------
-
-#-----------------------------------------Start of Voltage Collapse Code------------------------------------------------------------------------------------------------------------------
 '''
+#-----------------------------------------End of Power flow code and Power Flow Comparison between GridCal and PSS/E--------------------------------------------------------------------------------------------------------
+
+
+numeric_circuit = grid.compile_snapshot()
+numeric_inputs = numeric_circuit.compute()
+ybus_1 = numeric_inputs[0].Ybus            # computing the Y bus of the matrix;
+R = ybus_1.A.real                          # Scipy sparse matrix to normal matrix;
+I = ybus_1.A.imag
+
+
+#-----------------------------------------Start of Voltage Collapse Code pre-contingency------------------------------------------------------------------------------------------------------------------
 vc_options = VoltageCollapseOptions(step=0.001, adapt_step=True, step_min=0.00001, step_max=0.2, error_tol=1e-3, tol=1e-6, max_it=20, verbose=False)
 numeric_circuit = grid.compile()
 numeric_inputs = numeric_circuit.compute()
@@ -1051,9 +1112,42 @@ for c in numeric_inputs:
     Sbase[c.original_bus_idx] = c.Sbus
     Vbase[c.original_bus_idx] = c.Vbus
 unitary_vector = -1 + 2 * np.random.random(len(grid.buses))
-vc_inputs = VoltageCollapseInput(Sbase=Sbase, Vbase=Vbase, Starget=Sbase * (5 + unitary_vector))
+vc_inputs = VoltageCollapseInput(Sbase=Sbase, Vbase=Vbase, Starget=Sbase * (3 + unitary_vector))
 vc = VoltageCollapse(circuit=grid, options=vc_options, inputs=vc_inputs)
 vc.run()
+
+smoothness_r = []
+smoothness_i = []
+data = vc.results.voltages
+print(data)                      # extracting the graph signals in cartesian coordinates in order to calculate smoothness test statistic
+
+for a in range(data.shape[0]):
+    vv = data[a,:]
+    vv_r = vv.real
+    vv_i = vv.imag
+    smoothness_r.append(vv_r.T.dot(R).dot(vv_r))
+    smoothness_i.append(vv_i.T.dot(-I).dot(vv_i))
+
+q = [a for a in range(data.shape[0]) if a%5==0]
+fig, ax = plt.subplots()
+ax.stem(q, np.absolute(smoothness_r[0:data.shape[0]:5]), use_line_collection=True)
+ax.set_title('Nordic 32 system', fontsize=20)
+ax.set_ylabel('Test Statistic (Real Part)', fontsize=20)
+ax.set_xlabel('Number of Iterations of Continuation Power Flow', fontsize=20)
+
+fig, ax = plt.subplots()
+ax.stem(q, np.absolute(smoothness_i[0:data.shape[0]:5]), use_line_collection=True)
+ax.set_title('Nordic 32 system', fontsize=20)
+ax.set_ylabel('Test Statistic (Imaginary Part)', fontsize=20)
+ax.set_xlabel('Number of Iterations of Continuation Power Flow', fontsize=20)
+
+print(smoothness_r)
+print(smoothness_i)
+
+data = abs(data)
+print(data)
+
+
 spec = ['1_LOAD 1041', '4_LOAD 1044', '4044']
 
 for key, value in grid.bus_dictionary.items():
@@ -1066,8 +1160,6 @@ index, columns, data = mdl.get_data()
 
 indices = [lis.index('1_LOAD 1041'), lis.index('4_LOAD 1044'), lis.index('4044')]      # selecting the required buses you want to plot
 A = [[sublist[x] for x in indices] for sublist in data]
-#print(data)
-#print(A)
 print(columns)
 sub_columns = spec
 df1 = pd.DataFrame(data=A, index=index, columns=sub_columns)
@@ -1075,27 +1167,23 @@ ax = df1.plot()
 ax.set_title('Bus Voltage - Nordic 32', fontsize=20)
 ax.set_ylabel('Bus Voltage in Per Unit (P.U)', fontsize=20)
 ax.set_xlabel('Loading from the base situation ($\lambda$)', fontsize=20)
-'''
+
+plt.show()
+
 #-----------------------------------------End of Voltage Collapse Code------------------------------------------------------------------------------------------------------------------
 
-#----------------------------------------NetworkX grid plot visulaization--------------------------------------------
+#----------------------------------------NetworkX grid plot visualization--------------------------------------------------------------------------------------
 '''
 g2 = grid.build_multi_graph()
 print(nx.info(g2))
 save_graph(g2,"nordic_32_before_outage.pdf")
 '''
-
-
-
-
-
-#mdl.plot()
 #grid.delete_branch(br1)            # removing the most heavily loaded branch
 #grid.delete_branch(br2)            # removing the loaded branch < br1
-'''
-grid.delete_branch(br4031_4032)
-#grid.delete_branch(br4011_4012)
 
+#grid.delete_branch(br4031_4032)
+#grid.delete_branch(br4011_4012)
+'''
 
 #-----------------------------------------Start of Voltage Collapse Code after contingency------------------------------------------------------------------------------------------------------------------
 vc_options = VoltageCollapseOptions(step=0.001, adapt_step=True, step_min=0.00001, step_max=0.2, error_tol=1e-3, tol=1e-6, max_it=20, verbose=False)
@@ -1125,7 +1213,7 @@ df2 = pd.DataFrame(data=B, index=index, columns=sub_columns)
 df2.plot(ax=ax, ls="--")
 plt.show()
 '''
-#-----------------------------------------NetworkX grid visualization after --------------------------------------------
+#-----------------------------------------NetworkX grid visualization after ----------------------------------------------------------------------------
 '''
 g1 = grid.build_multi_graph()
 print(nx.info(g1))

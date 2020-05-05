@@ -6,13 +6,11 @@ from GridCal.Engine.Simulations.ContinuationPowerFlow.voltage_collapse_driver im
 np.set_printoptions(precision=4)
 grid = MultiCircuit()
 
-
+#-----------------------------------------Start of modeling Nordi-32----------------------------------------------------
 bus1 = Bus('Bus 1 HV', vnom=139.92, is_slack=True)    # creating an object
 grid.add_bus(bus1)                                    # appending an object to the list
 gen0 = Generator(name='gen0', active_power=232.4, power_factor=0.8, voltage_module=1.06, is_controlled=True, Qmin=0, Qmax=10)
 grid.add_generator(bus1, gen0)
-
-
 
 bus2 = Bus('Bus 2 HV', vnom=137.94)       # creating an object
 grid.add_bus(bus2)                        # appending an object to the list
@@ -20,77 +18,53 @@ gen1 = Generator(name='gen1', active_power=40, voltage_module=1.045, is_controll
 grid.add_generator(bus2, gen1)
 grid.add_load(bus2, Load('load@BUS2', P=21.7, Q=12.7))
 
-
-
 bus3 = Bus('Bus 3 HV', vnom=133.32)       # creating an object
 grid.add_bus(bus3)                        # appending an object to the list
 gen2 = Generator(name='gen2', active_power=0, voltage_module=1.01, is_controlled=True, Qmin=0, Qmax=40)
 grid.add_generator(bus2, gen2)
 grid.add_load(bus3, Load('load@BUS3', P=94.2, Q=19))
 
-
-
 bus4 = Bus('Bus 4 HV', vnom=134.46)       # creating an object
 grid.add_bus(bus4)                        # appending an object to the list
 grid.add_load(bus4, Load('load@BUS4', P=47.8, Q=-3.9))
-
-
 
 bus5 = Bus('Bus 5 HV', vnom=134.67)       # creating an object
 grid.add_bus(bus5)                        # appending an object to the list
 grid.add_load(bus5, Load('load@BUS5', P=7.6, Q=1.6))
 
-
-
 bus6 = Bus('Bus 6 LV', vnom=35.31)       # creating an object
 grid.add_bus(bus6)                       # appending an object to the list
 grid.add_load(bus6, Load('load@BUS6', P=11.2, Q=7.5))
 
-
-
 bus7 = Bus('Bus 7 ZV', vnom=1.06)       # creating an object
 grid.add_bus(bus7)                        # appending an object to the list
 
-
-
 bus8 = Bus('Bus 8 TV', vnom=11.99)       # creating an object
 grid.add_bus(bus8)                        # appending an object to the list
-
 
 bus9 = Bus('Bus 9 LV', vnom=34.86)       # creating an object
 grid.add_bus(bus9)                        # appending an object to the list
 grid.add_load(bus9, Load('load@BUS9', P=29.5, Q=16.6))
 
-
-
 bus10 = Bus('Bus 10 LV', vnom=34.69)       # creating an object
 grid.add_bus(bus10)                        # appending an object to the list
 grid.add_load(bus10, Load('load@BUS10', P=9.0, Q=5.8))
-
-
 
 bus11 = Bus('Bus 11 LV', vnom=34.88)       # creating an object
 grid.add_bus(bus11)                        # appending an object to the list
 grid.add_load(bus11, Load('load@BUS11', P=3.5, Q=1.8))
 
-
-
 bus12 = Bus('Bus 12 LV', vnom=34.82)       # creating an object
 grid.add_bus(bus12)                        # appending an object to the list
 grid.add_load(bus12, Load('load@BUS12', P=6.1, Q=1.6))
-
-
 
 bus13 = Bus('Bus 13 LV', vnom=34.66)       # creating an object
 grid.add_bus(bus13)                        # appending an object to the list
 grid.add_load(bus13, Load('load@BUS13', P=13.5, Q=5.8))
 
-
-
 bus14 = Bus('Bus 14 LV', vnom=34.18)       # creating an object
 grid.add_bus(bus14)                        # appending an object to the list
 grid.add_load(bus14, Load('load@BUS14', P=14.9, Q=5.0))
-
 
 grid.add_branch(Branch(bus1, bus2, 'transformer branch 1-2', r=0.01938, x=0.0591, b=0.0528, rate=192.6, bus_to_regulated=True, branch_type=BranchType.Transformer))
 grid.add_branch(Branch(bus1, bus5, 'transformer branch 1-5', r=0.054, x=0.2230, b=0.0492, rate=93.94,bus_to_regulated=True, branch_type=BranchType.Transformer))
@@ -113,6 +87,8 @@ grid.add_branch(Branch(bus10, bus11, 'line 10-11', r=0.08, x=0.192, b=0.0, rate=
 grid.add_branch(Branch(bus12, bus13, 'line 12-13', r=0.22, x=0.192, b=0.0, rate=2.28))
 grid.add_branch(Branch(bus13, bus14, 'line 13-14', r=0.170, x=0.34, b=0.0, rate=7.5))
 grid.add_shunt(bus9, Shunt( name='shunt', B=19.0))
+#-----------------------------------------End of modeling Nordic-32--------------
+
 
 #-----------------------------------------Power Flow Code--------------------------------------------
 '''
@@ -155,8 +131,15 @@ print('\t|loading|:', abs(power_flow.results.loading) * 100)
 print('\terr:', power_flow.results.error)
 print('\tConv:', power_flow.results.converged)
 '''
-#-----------------------------------------Voltage Collapse Code--------------------------------------------
 
+numeric_circuit = grid.compile_snapshot()
+numeric_inputs = numeric_circuit.compute()
+ybus_1 = numeric_inputs[0].Ybus      # computing the Y bus of the matrix;
+R = ybus_1.A.real                    # Scipy sparse matrix to normal matrix;
+I = ybus_1.A.imag
+
+
+#-----------------------------------------Voltage Collapse Code--------------------------------------------
 vc_options = VoltageCollapseOptions()
 numeric_circuit = grid.compile()
 numeric_inputs = numeric_circuit.compute()
@@ -168,17 +151,46 @@ for c in numeric_inputs:
 unitary_vector = -1 + 2 * np.random.random(len(grid.buses))
 vc_inputs = VoltageCollapseInput(Sbase=Sbase,
                                  Vbase=Vbase,
-                                 Starget=Sbase * (5 + unitary_vector))
+                                 Starget=Sbase * (15 + unitary_vector))
 vc = VoltageCollapse(circuit=grid, options=vc_options,
                      inputs=vc_inputs)
 vc.run()
+
+smoothness_r = []
+smoothness_i = []
+data = vc.results.voltages
+print(data)                # extracting the graph signals in cartesian coordinates
+
+for a in range(data.shape[0]):
+    vv = data[a,:]
+    vv_r = vv.real
+    vv_i = vv.imag
+    smoothness_r.append(vv_r.T.dot(R).dot(vv_r))
+    smoothness_i.append(vv_i.T.dot(-I).dot(vv_i))
+
+q = [a for a in range(data.shape[0]) if a%4==0]
+fig, ax = plt.subplots()
+ax.stem(q, np.absolute(smoothness_r[0:data.shape[0]:4]), use_line_collection=True)
+ax.set_title('IEEE 14 system', fontsize=20)
+ax.set_ylabel('Test Statistic (Real Part)', fontsize=20)
+ax.set_xlabel('Number of Iterations of Continuation Power Flow', fontsize=20)
+
+fig, ax = plt.subplots()
+ax.stem(q, np.absolute(smoothness_i[0:data.shape[0]:4]), use_line_collection=True)
+ax.set_title('IEEE 14 system', fontsize=20)
+ax.set_ylabel('Test Statistic (Imaginary Part)', fontsize=20)
+ax.set_xlabel('Number of Iterations of Continuation Power Flow', fontsize=20)
+
+print(smoothness_r)
+print(smoothness_i)
+
+data = abs(data)  # extracting the graph signals magnitudes
 mdl = vc.results.mdl()
 mdl.plot()
 
 
-
 #-----------------------------------------NetworkX grid plotting properties--------------------------------------------
-
+'''
 plt.figure()
 g2 = grid.build_multi_graph()
 pos = nx.kamada_kawai_layout(g2)
@@ -190,5 +202,5 @@ for i, branch in enumerate(grid.branches):
     edge_labels[(f,t)] = branch.name
 #print(edge_labels)
 nx.draw_networkx_edge_labels(g2, pos, edge_labels = edge_labels, font_color='red')
-
+'''
 plt.show()
