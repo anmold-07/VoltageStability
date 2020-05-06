@@ -157,6 +157,17 @@ ybus_1 = numeric_inputs[0].Ybus      # computing the Y bus of the matrix;
 R = ybus_1.A.real                    # Scipy sparse matrix to normal matrix;
 I = ybus_1.A.imag
 
+
+eigenValues_r, eigenVectors_r = linalg.eig(R)
+eigenValues_i, eigenVectors_i = linalg.eig(-I)
+idx_r = eigenValues_r.argsort()
+idx_i = eigenValues_i.argsort()
+eigenValues_r = eigenValues_r[idx_r]        # sorting (in increasing order) the corresponding eigenvalues and the corresponding vectors
+eigenVectors_r = eigenVectors_r[:,idx_r]
+
+eigenValues_i = eigenValues_i[idx_i]        # sorting (in increasing order) the corresponding eigenvalues and the corresponding vectors
+eigenVectors_i = eigenVectors_i[:,idx_i]
+
 #-----------------------------------------Voltage Collapse Code------------------------------------------------------------------------------------
 vc_options = VoltageCollapseOptions(step=0.001, adapt_step=True, step_min=0.00001, step_max=0.2, error_tol=1e-3, tol=1e-6, max_it=20, verbose=False)
 numeric_circuit = grid.compile()
@@ -202,6 +213,15 @@ print(smoothness_r)
 print(smoothness_i)
 
 data = abs(data)  # extracting the graph signals magnitudes
+
+
+v_r_hat = (eigenVectors_r.T).dot(data[2,:].real)   # finding the graph fourier transform of the real part
+fig, ax = plt.subplots()
+ax.stem(eigenValues_r, v_r_hat, use_line_collection=True)
+
+v_r_hat = (eigenVectors_r.T).dot(data[ data.shape[0]-10, :].real)   # finding the graph fourier transform of the real part
+fig, ax = plt.subplots()
+ax.stem(eigenValues_r, v_r_hat, use_line_collection=True)
 
 
 mdl = vc.results.mdl()
